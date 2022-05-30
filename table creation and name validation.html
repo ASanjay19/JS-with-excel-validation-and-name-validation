@@ -1,0 +1,331 @@
+  
+<html>
+<head>
+<title>Registration Form</title>
+<style>
+
+
+
+*{
+	box-sizing: border-box;
+}
+
+
+body{
+	
+	 background-color: DarkSeagreen; 
+	font-family:sans-serif;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	margin: 0;
+}
+.container{
+	background-color:Aliceblue;
+	border-radius: 5px;
+	box-shadow: 10px 20px 25px rgba(0,0,0,.3);
+	overflow:hidden;
+	height:auto;
+	width:auto;
+}
+.header{
+	border-bottom:1px solid gray;
+	background-color: solid blue;
+	padding: 20px 40px;
+}
+.header h2{
+	margin:0px;
+	text-align:center;
+	background-color:yellow;
+}
+.header marquee{
+	background-color:Aliceblue;
+	text:bold;
+}
+.form{
+	padding: 30px 40px;
+}
+.form-field{
+	<!-- margin-bottom:10px; -->
+	padding-bottom:10px;
+	position:relative;
+}
+.form-field label{
+	display:inline-block;
+	<!-- margin-bottom:5px; -->
+	display:none;
+	padding:5px;
+}
+.form-field input{
+	  border: 2px solid green; 
+	<!-- border-radius:4px; -->
+	display:block;
+	font-size:12px;
+	 padding:5px;
+	 width:auto%; 
+}
+.form-field button{
+	border: 2px solid green;
+	padding:5px;
+}
+.address{
+	width:1px;
+}
+.form-control input{
+	outline:none;
+	border-color:black;
+}
+.form-control.success input{
+	outline:none;
+	<!-- border-color:green;	 -->
+}
+.form-control.error input{
+	border-color:green;
+}
+
+table, td, th {
+  border: 1px solid black;
+}
+
+table {
+  border-collapse: collapse;
+  width:100%;
+}
+th {
+  height: 30px;
+}
+input:required:focus {
+  border: 2px solid red;
+  outline: none;
+}
+
+label {
+        display: inline-block;
+        width: 150px;
+        text-align: right;
+      }
+td{
+	overflow:hidden;
+}
+
+.img.Ist{
+	
+}
+.validateForm{
+	background-color:red;
+}
+.form-field.span{
+	text-align:center;
+	text-color:red;
+	width:150px;
+}
+
+
+.form-field.success input{
+    border:2px solid green;
+}
+.form-field.error input{
+    border:2px solid rgb(228, 29, 22);
+}
+
+.form-field.error small{
+  
+   
+    visibility:hidden;
+	display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: rgb(245, 110, 110);
+    position: relative;
+    left: 155px;	
+	
+}
+
+</style>
+
+
+
+
+<script>
+//after submited the form, form data storing into a table.
+        
+		var tag = false
+		
+		function AddRow(){
+//calling the validation 		
+		  checkInputs()
+		
+			if(tag){
+			
+			
+		}
+		}
+           	
+//label error validation with borders red color and text.
+const form = document.querySelector('form');
+
+
+function checkInputs() {
+
+const username =document.getElementById('fname');
+const db = document.getElementById('Date');
+const email = document.getElementById('mail');
+const Address = document.getElementById('address');
+	if(username.value.trim() === '') {
+	
+		onError(username,"Please enter Valid name");
+		
+	} else {
+		onSuccess(username);
+	
+
+
+	
+	}
+	if(db.value.trim() === '') {
+		onError(db,"Please enter your date of birth ");
+		
+	} else {
+		onSuccess(db);
+		
+	}
+	if(email.value.trim() === '') {
+		onError(email,"Please check your mail id");
+		
+	} else if (!isValidEmail(email.value.trim())) {
+		onError(email,"Please check your mail id");
+	} else {
+		onSuccess(email);	
+	}
+	
+	if(Address.value.trim() === '') {
+		onError(Address,"Please enter your address");
+	
+	} else {
+		onSuccess(Address);
+		
+	}
+}
+
+
+function onSuccess(input) {
+	let parent=input.parentElement;
+	let messageEle=parent.querySelector("small");
+    messageEle.style.visibility="hidden"; 
+    parent.classList.remove("error");
+    parent.classList.add("success");	
+	tag = true
+}
+
+function onError(input,message){
+    let parent=input.parentElement;
+    let messageEle=parent.querySelector("small");
+    messageEle.style.visibility="visible";
+    messageEle.innerText=message;  
+    parent.classList.add("error");
+    parent.classList.remove("success");
+	tag = false
+}
+
+function isValidEmail(email){
+  return /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+}
+
+
+//To clear the table rows.		
+/*function clear() {
+	 <!-- document.getElementById("show").deleteRow(0); -->
+}*/
+</script>
+
+</head>
+<body>
+<div class="container">
+	<div class="col-lg-5 col-md-8 mx-auto shadow border bg-skyblue p-4 rounded">
+		<div class="header">
+		    <div class="imagcontainer" style="text-align:center">
+			     <img src="istlogo.png" alt="Ist" class="center" width="200"> 
+		    </div>
+			<h2 class="text-center fw-bold mb-3"> Registration Form </h2><br>
+			<marquee>Its Pleasure To See You All. Please Fill The Form..! Thank You</marquee> 
+		</div>
+        <form class="form" name="google-sheet" id="form">
+	       <div class="form-field">
+				<label for="First Name" id="onlytext" text=5px><b>First Name :</b></label>
+				<input type="text"  pattern="[a-zA-Z'-'\s]*" id="fname" name="fname" placeholder="Enter Your First Name"><br><br>
+				<small></small>
+			</div>
+			<div class="form-field">
+				<label for="Date"><b>Date of Birth :</b></label>
+				<input type="date" id="Date" name="Date" placeholder="Enter Your Date of Birth"  ><br><br>
+				<small></small>
+			</div>	
+			<div class="form-field">
+				<label for="Email"><b>Email :</b></label>
+				<input type="email" id="mail" name="mail" placeholder="example@gmail.com" ><br><br>
+				<small></small>
+			</div>
+			<div class="form-field">
+				<label for="Address"><b>Address :</b></label>
+				<input type="text" id="address" name="address" placeholder="Please Enter Your Address" ><br>
+				<small></small><br>
+			</div>
+
+			<div class="form-field" style="text-align:center">
+				<button type="submit" onclick="AddRow()">submit</button>
+				<button type="reset">Reset</button>
+			</div>
+		 
+		</form>
+		
+	</div>
+</div>
+	
+
+<script>
+//this is for current date creation validation.
+var todayDate = new Date();
+var month = todayDate.getMonth()+1; 
+var year = todayDate.getUTCFullYear(); 
+var tdate = todayDate.getDate();
+if(month < 10){
+    month = "0" + month
+}
+if(tdate < 10){
+    tdate = "0" + tdate;
+}
+var maxdate = year + "-" + month + "-" + tdate;
+document.getElementById("Date").setAttribute("max", maxdate);
+</script>
+<!-- this is for form to excel data convertion -->
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+
+        const scriptURL ='https://script.google.com/macros/s/AKfycbzN-3pGXqHklWDr_z4JBtY4PHTdaPa_skrNhiNHSJ4UjoEDSxp2vO8vXF1ZvRhCAdVTXg/exec'
+        const data = document.forms['google-sheet']
+		
+        data.addEventListener('submit', e => {
+            e.preventDefault()
+            fetch(scriptURL, { method: 'POST', body: new FormData(data)})
+            .then(response => $("#data_alerts").html("<div class='alert alert-success'>Details saved successfully.</div>"))
+            .catch(error => $("#data_alerts").html("<div class='alert alert-danger'>Details not saved.</div>"))
+			 
+			 <!-- document.write('Your Details Was Saved. Thank you So Much!') -->
+			 
+		<!-- ....this is for after submited the form the form should be MT....  -->
+			var f1=document.getElementById("fname").value="";
+			var f2=document.getElementById("Date").value="";
+			var f3=document.getElementById("mail").value="";
+			var f4=document.getElementById("address").value="";
+			
+			<!-- alert('Your Details Was Saved. Thank you So Much! ')  -->
+			
+        })
+		
+</script>
+
+</body>
+</html>
